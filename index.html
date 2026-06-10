@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Sala de Estudos</title>
+</head>
+<body id="light-theme">
+    <header>
+        <button class="theme-switch" onclick="changeTheme()">
+            <img src="./public/assets/sun-moon.svg" alt="">
+        </button>
+        <div class="div-time">
+            <p id="time">
+                Hora vai ficar aqui
+            </p>
+        </div>
+    </header>
+    <div class="div-date">
+        <p id="date">
+            Data vai ficar aqui
+        </p>
+    </div>
+    <footer>
+        <button>
+            <img src="./public/assets/volume.svg" alt="">
+        </button>
+    </footer>
+</body>
+<script>
+
+    function changeTheme() {
+        let page = document.body;
+        if (page.id == "light-theme") {
+            page.id = "dark-theme"
+        } else {
+            page.id = "light-theme"
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+    console.log("O DOM está pronto e o HTML carregado!");
+    let time = document.getElementById("time");
+    });
+</script>
+</html>
