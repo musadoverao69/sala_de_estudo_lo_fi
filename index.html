@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="./script.js"></script>
     <title>Sala de Estudos</title>
 </head>
 <body id="light-theme">
     <header>
-        <button class="theme-switch" onclick="changeTheme()">
-            <img src="./public/assets/sun-moon.svg" alt="">
+        <button id="theme-toggle" onclick="updateTheme()">
+            <img src="./public/assets/sun-moon.svg" alt="Botão com uma lua e um sol que ao clicar muda o tema da página">
         </button>
         <div class="div-time">
             <p id="time-id"></p>
@@ -19,58 +20,10 @@
         <p id="date-id"></p>
     </div>
     <footer>
-        <button>
-            <img src="./public/assets/volume.svg" alt="">
+        <button id="volume-toggle">
+            <img src="./public/assets/volume.svg" alt="Botão com o icone de volume que ao clicar muta ou desmuta a música da página">
+            <audio id="lofi-audio" src="./public/assets/mondamusic-lofi.mp3" loop></audio>
         </button>
     </footer>
 </body>
-<script>
-
-    function changeTheme() {
-        let page = document.body;
-        if (page.id == "light-theme") {
-            page.id = "dark-theme"
-        } else {
-            page.id = "light-theme"
-        }
-    }
-
-    function getDate() {
-        let p ='';
-
-        const diasDaSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
-        const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-
-        let date = new Date();
-        let week = diasDaSemana[date.getDay()];
-        let day = date.getDate();
-        let month = meses[date.getMonth()];
-        p = `${week}, ${month} ${day}`
-
-        document.getElementById('date-id').textContent = p;
-    }
-
-    function updateHour() {
-        let p = '';
-
-        let date = new Date();
-        let hour = date.getHours();
-        let minute = String(date.getMinutes()).padStart(2, '0');
-         if (hour>12) {
-            hour = hour-12;
-             hour =  String(hour).padStart(2, '0');
-             p = `${hour} :${minute} PM`
-        } else {
-             hour =  String(hour).padStart(2, '0');
-             p = `${hour} :${minute} AM`
-        }
-        document.getElementById('time-id').textContent = p;
-    }
-
-    document.addEventListener("DOMContentLoaded", function() {
-        getDate();
-        setInterval(updateHour, 1000);
-        updateHour();
-    });
-</script>
 </html>
