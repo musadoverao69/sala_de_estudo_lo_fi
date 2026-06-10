@@ -12,15 +12,11 @@
             <img src="./public/assets/sun-moon.svg" alt="">
         </button>
         <div class="div-time">
-            <p id="time">
-                Hora vai ficar aqui
-            </p>
+            <p id="time-id"></p>
         </div>
     </header>
     <div class="div-date">
-        <p id="date">
-            Data vai ficar aqui
-        </p>
+        <p id="date-id"></p>
     </div>
     <footer>
         <button>
@@ -39,9 +35,42 @@
         }
     }
 
+    function getDate() {
+        let p ='';
+
+        const diasDaSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+        const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+
+        let date = new Date();
+        let week = diasDaSemana[date.getDay()];
+        let day = date.getDate();
+        let month = meses[date.getMonth()];
+        p = `${week}, ${month} ${day}`
+
+        document.getElementById('date-id').textContent = p;
+    }
+
+    function updateHour() {
+        let p = '';
+
+        let date = new Date();
+        let hour = date.getHours();
+        let minute = String(date.getMinutes()).padStart(2, '0');
+         if (hour>12) {
+            hour = hour-12;
+             hour =  String(hour).padStart(2, '0');
+             p = `${hour} :${minute} PM`
+        } else {
+             hour =  String(hour).padStart(2, '0');
+             p = `${hour} :${minute} AM`
+        }
+        document.getElementById('time-id').textContent = p;
+    }
+
     document.addEventListener("DOMContentLoaded", function() {
-    console.log("O DOM está pronto e o HTML carregado!");
-    let time = document.getElementById("time");
+        getDate();
+        setInterval(updateHour, 1000);
+        updateHour();
     });
 </script>
 </html>
